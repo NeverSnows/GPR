@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="table.css">
+
+    <title>Fetch test</title>
 </head>
+<body class="body-style">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-<body>
+    <header class="header-style">
+        <p class="title">Coincap Fetch</p>
+    </header>
+    <div class="content">
+        <div class="table-container">
+            <table id="data-table" class="data-table display">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Market Cap</th>
+                        <th>VWAP (24h)</th>
+                        <th>Suply</th>
+                        <th>Volume (24h)</th>
+                        <th>Change (24h)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- Dados da tabela vão aqui -->
+                    <!-- <tr>
+                        <td>Luz da semana passada</td>
+                        <td>R$290.90</td>
+                        <td>Eletricidade</td>
+                    </tr>
+                    <tr>
+                        <td>Gas do mes</td>
+                        <td>R$:150.00</td>
+                        <td>Gas</td>
+                    </tr>
+                    <tr>
+                        <td>Compra mensal</td>
+                        <td>R$:890.00</td>
+                        <td>Mantimentos</td>
+                    </tr> -->
+                    
+                </tbody>
+            </table>
+        </div>        
+    </div>
+    <footer class="page-end">
+        <a href="https://github.com/NeverSnows" class="credit" target="_blank">Feito por github.com/NeverSnows</a>
+    </footer>
 </body>
-<!-- <script src="fetch-data-by-id.js"></script> -->
 <script src="get-data.js"></script>
-
 </html>
