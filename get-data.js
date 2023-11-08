@@ -40,36 +40,47 @@ async function getAssetMarket(id = '') {
 //#region utils
 async function getAssetIds(){
     const response = await getAssets();
-    return response.data.map(coin => coin.name);
+    return response.data.map(coin => coin.id);
 }
+
+async function getSelectedCoins(){
+    const coinIDs = [
+        "bitcoin",
+        "ethereum",
+        "tether",
+        "binance-coin",
+        "xrp",
+        "usd-coin",
+        "solana",
+        "cardano",
+        "dogecoin",
+        "tron"
+    ];
+
+    const coins = [];
+
+    coinIDs.forEach(id => getAssetById(id).then(response =>{
+        coins.push(response.data);
+    }));
+
+    return coins;
+}
+
+logData(getSelectedCoins);
 
 async function logData(func){
     func().then(response => console.log(response));
 }
 //#endregion
 
-//#region timer
-
-//Defines how many seconds between each fetch operation.
-const fetchSecondsInterval = 5;
-
-const fetchInterval = 1000 * fetchSecondsInterval
-let iterations = 0;
-
-function handleIterationLimmit(){
-    iterations++;
-    console.log(`Data fetched ${iterations} times.`);
-
-    if(iterations >= 20){
-        clearInterval(fetchTimer);
-        console.log("Done.");
-    }
-}
-//#endregion
-
-function updateTable(dataArray){
+function updateTable(dataArray = []){
     const tableBodyElement = document.querySelector('#data-table tbody');
     tableBodyElement.innerHTML = '';
+
+    Array(dataArray);
+
+    console.log(dataArray);
+    console.log(dataArray[1]);
 
     dataArray.forEach(coin => {
             const row = document.createElement('tr');
@@ -111,14 +122,16 @@ function updateTable(dataArray){
 }
 
 //Calls
+const fetchSecondsInterval = 5;
+
+const fetchInterval = 1000 * fetchSecondsInterval
+let iterations = 0;
 
 const titleElement = document.querySelector('.title');
 
-const fetchTimer = setInterval(() => getAssets()
+const fetchTimer = setInterval(() => getSelectedCoins()
     .then((response) => {
-        console.log(response);
-        updateTable(response.data);
-        //handleIterationLimmit();
+        updateTable(response);
     }), fetchInterval)
 
 
