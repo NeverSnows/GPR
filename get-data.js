@@ -59,14 +59,13 @@ async function getSelectedCoins(){
 
     const coins = [];
 
-    coinIDs.forEach(id => getAssetById(id).then(response =>{
+    for (const id of coinIDs) {
+        const response = await getAssetById(id);
         coins.push(response.data);
-    }));
+    }
 
     return coins;
 }
-
-logData(getSelectedCoins);
 
 async function logData(func){
     func().then(response => console.log(response));
@@ -76,11 +75,6 @@ async function logData(func){
 function updateTable(dataArray = []){
     const tableBodyElement = document.querySelector('#data-table tbody');
     tableBodyElement.innerHTML = '';
-
-    Array(dataArray);
-
-    console.log(dataArray);
-    console.log(dataArray[1]);
 
     dataArray.forEach(coin => {
             const row = document.createElement('tr');
