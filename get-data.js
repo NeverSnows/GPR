@@ -45,19 +45,19 @@ async function getAssetIds(){
 
 async function getSelectedCoins(){
     const coinIDs = [
-        "bitcoin",
         "ethereum",
-        "tether",
-        "binance-coin",
-        "xrp",
-        "usd-coin",
+        "bitcoin",
+        "polygon",
+        "uniswap",
+        "dydx",
+        "render-token",
         "solana",
-        "cardano",
-        "dogecoin",
-        "tron"
+        "aave",
+        "lido-dao",
+        "fetch"
     ];
 
-    const coins = [];
+    const coins = [];   
 
     for (const id of coinIDs) {
         const response = await getAssetById(id);
