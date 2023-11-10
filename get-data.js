@@ -69,10 +69,6 @@ function updateTable(dataArray = []){
 
     dataArray.forEach(coin => {
             const row = document.createElement('tr');
-    
-            const rankCell = document.createElement('td');
-            rankCell.textContent = coin.rank;
-            row.appendChild(rankCell);
 
             const nameCell = document.createElement('td');
             nameCell.textContent = coin.name;
@@ -99,7 +95,9 @@ function updateTable(dataArray = []){
             row.appendChild(volumeCell);
 
             const changePercentCell = document.createElement('td');
-            changePercentCell.textContent = Number(coin.changePercent24Hr).toFixed(2) + '%';
+            let changePcentValue = Number(coin.changePercent24Hr).toFixed(2);
+            if(changePcentValue == 0) changePcentValue = changePcentValue.replace('-','');
+            changePercentCell.textContent = changePcentValue  + '%';
             row.appendChild(changePercentCell);
 
             tableBodyElement.appendChild(row);
@@ -114,7 +112,8 @@ const titleElement = document.querySelector('.title');
 const fetchTimer = setInterval(() => getSelectedCoins()
     .then((response) => {
         updateTable(response);
-    }), fetchInterval)
+        console.log(response);
+    }), fetchInterval);
 
 
 $(document).ready(function () {
