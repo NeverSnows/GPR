@@ -15,6 +15,7 @@ async function fetchData(url) {
         return null;
     }
 }
+
 //#region assets
 async function getAssets() {
     const url = 'https://api.coincap.io/v2/assets';
@@ -23,16 +24,6 @@ async function getAssets() {
 
 async function getAssetById(id = '') {
     const url = `https://api.coincap.io/v2/assets/${id}`;
-    return fetchData(url);
-}
-
-async function getAssetHistory(id = '') {
-    const url = `https://api.coincap.io/v2/assets/${id}/history`;
-    return fetchData(url);
-}
-
-async function getAssetMarket(id = '') {
-    const url = `https://api.coincap.io/v2/assets/${id}/market`;
     return fetchData(url);
 }
 //#endregion
@@ -45,7 +36,7 @@ async function getAssetIds(){
 
 async function getSelectedCoins(){
     const coinIDs = [
-        "ethereum",
+        "ethereum", 
         "bitcoin",
         "polygon",
         "uniswap",
@@ -117,10 +108,7 @@ function updateTable(dataArray = []){
 
 //Calls
 const fetchSecondsInterval = 5;
-
-const fetchInterval = 1000 * fetchSecondsInterval
-let iterations = 0;
-
+const fetchInterval = 1000 * fetchSecondsInterval;
 const titleElement = document.querySelector('.title');
 
 const fetchTimer = setInterval(() => getSelectedCoins()
